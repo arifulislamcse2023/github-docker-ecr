@@ -1,13 +1,11 @@
-FROM python:3.10-alpine3.18
+FROM node:14
 
-# WORKDIR /app
+WORKDIR /usr/src/app
 
+COPY package.json .
+RUN npm install 
 COPY . .
 
-RUN pip install -r requirements.txt
+EXPOSE 3000
 
-EXPOSE 5000
-
-ENV PYTHONUNBUFFERED=1
-
-CMD ["python" ,"app.py"]
+CMD ["node", "index.js"]
